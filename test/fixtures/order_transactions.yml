@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  issuer_wallet: one
+  receiver_wallet: one
+  amount: 9.99
+
+two:
+  issuer_wallet: two
+  receiver_wallet: two
+  amount: 9.99

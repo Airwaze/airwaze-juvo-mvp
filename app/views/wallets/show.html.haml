@@ -1,0 +1,33 @@
+.col-lg-7.my-auto
+  .header-content.mx-auto
+    %h5
+      = link_to t('app.title'), root_path, class: 'text-white'
+    %br
+    %h1.mb-7= resource.name
+    %h5
+      %span.font-weight-bold= resource.juvo_token_balance
+      Juvo Tokens
+    - if resource.user_wallet?
+      %h5
+        %span.font-weight-bold= resource.air_time_token_balance
+        Air Time Tokens
+.col-lg-5.my-auto
+  = form_for OrderTransaction.new, remote: true do |f|
+    - wallets = Wallet.where.not(id: resource).map { |w| [w.name + (w.user_wallet? ? ": #{w.juvo_token_balance} Juvo Tokens" : ''), w.id] }
+    - amounts = (0..1000).step(100).map { |am| [am.to_s, am] }
+    = f.hidden_field :issuer_wallet_id, value: resource.id
+    .form-group
+      = f.label :receiver_wallet
+      = f.select :receiver_wallet_id, wallets, { include_blank: true }, class: 'form-control selectize'
+    .form-group
+      = f.label :amount
+      = f.select :amount, amounts, { include_blank: true }, class: 'form-control selectize-amount'
+    = f.submit (resource.user_wallet? ? 'Pay' : 'Sell'), class: 'btn btn-primary col-lg-6'
+
+:javascript
+  $('.selectize').selectize()
+  $('.selectize-amount').selectize({
+    create: true,
+    createOnBlur: true,
+    persist: false
+  })

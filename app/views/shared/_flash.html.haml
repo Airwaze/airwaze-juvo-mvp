@@ -1,0 +1,28 @@
+<<<<<<< HEAD
+.container.center
+- if flash[:error].present?
+  .alert.alert-danger.alert-dismissible.fade.show{role: 'alert'}
+    = flash[:error]
+    %button.close{'data-dismiss': 'alert'}
+      %span &times;
+  </button>
+- elsif flash[:notice].present?
+  .alert.alert-success.alert-dismissible.fade.show{role: 'alert'}
+    = flash[:notice]
+    %button.close{'data-dismiss': 'alert'}
+      %span &times;
+=======
+- css_classes = {alert: 'alert-danger', notice: 'alert-success'}
+
+.container.center.mt-2.fixed-top
+  - flash.each do |key, message|
+    .alert.alert-dismissible.fade.show{role: 'alert', class: css_classes[key.to_sym]}
+      = message
+      %button.close{'data-dismiss': 'alert'}
+        %span &times;
+
+:javascript
+  $('.alert-success').delay(1500).fadeTo(2000, 0, function(){
+    $('.alert-success').alert('close')
+  });
+>>>>>>> airwaze-mvp/master

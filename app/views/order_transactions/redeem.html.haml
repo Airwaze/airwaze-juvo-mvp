@@ -1,0 +1,13 @@
+.col-lg-5.my-auto.mx-auto
+  %h2.text-center= "Redeem #{Currency.days_of_air_time.first.name_plural.titleize}"
+  = form_for resource do |f|
+    = f.hidden_field :receiver_wallet_id
+    .form-group
+      = f.label :amount
+      = f.select :amount,
+        amounts.map { |am| [am.to_s, am] },
+        { include_blank: true },
+        class: 'form-control',
+        'data-js-select-input': true,
+        'data-js-select-input-createable': true
+    = f.submit 'Send', class: 'btn btn-primary col-lg-6'

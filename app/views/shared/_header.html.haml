@@ -1,0 +1,15 @@
+.container.d-flex.justify-content-between.align-items-center
+  %h5.m-0
+    = link_to t('app.title'), root_path, class: 'text-white'
+  .text-right
+    - if user_signed_in?
+      - if current_user.regular?
+        %img.avatar.mr-2{src: current_user.image_url}
+      = link_to 'Sign Out', destroy_user_session_path, method: :delete,
+        class: 'btn btn-outline-light btn-sm'
+      - if current_user.regular?
+        = link_to 'Redeem', redeem_order_transactions_path,
+          class: 'btn btn-primary btn-sm'
+    - else
+      = link_to 'Sign in with Google', user_google_oauth2_omniauth_authorize_path,
+        class: 'btn btn-outline-light btn-sm'

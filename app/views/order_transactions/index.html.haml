@@ -1,0 +1,16 @@
+- if current_user.bank?
+  .col-lg-5.my-auto.mx-auto.text-center
+    %h2= current_user.name
+.col-12.col-md-5.my-auto.mx-auto.text-center
+  - if resources.empty?
+    %h5 No Transactions
+  %ul.list-group
+    - resources.each do |resource|
+      %li.list-group-item.d-flex.justify-content-between.align-items-center.text-left
+        - if resource.issuer_wallet.user == current_user
+          = "Sent to #{resource.receiver_wallet.user.name}"
+        - else
+          = "Received from #{resource.issuer_wallet.user.name}"
+        %span.text-right
+          = resource.amount
+          = resource.currency.name_plural.titleize

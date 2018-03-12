@@ -1,0 +1,34 @@
+!!! 5
+%html{lang: 'en', class: 'no-js'}
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+
+    %title= content_for(:title) || t('app.title')
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+
+    = csrf_meta_tag
+
+    %body
+<<<<<<< HEAD
+      %section.main
+        .container.h-100
+          = render 'shared/flash'
+          .row.h-100
+            = yield
+      %footer
+=======
+      %header
+        - unless content_for?(:header_hidden)
+          = render 'shared/header'
+      %section.main
+        = render 'shared/flash'
+        .container.h-100
+          .row.h-100
+            = yield
+      %footer
+        = content_for(:js)
+>>>>>>> airwaze-mvp/master
+        = render 'shared/footer'

@@ -1,0 +1,14 @@
+.col-lg-12.my-auto.mx-auto.text-center
+  = render 'qr_code'
+  %h2= resource.name
+  %h6= resource.email
+  .mt-4
+    - resource.wallets.each do |wallet|
+      .font-weight-bold
+        = wallet.balance
+        = wallet.currency.name_plural.titleize
+  = link_to 'Pay', new_order_transaction_path,
+    class: 'btn btn-lg btn-primary col-10 col-sm-4 mt-4'
+  %br
+  %br
+  = link_to 'Transaction Histoy', order_transactions_path, class: 'text-white'

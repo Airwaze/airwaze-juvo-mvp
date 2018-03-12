@@ -1,0 +1,4 @@
+- qr_options = { size: 5, level: :h }
+- svg_options = { offset: 5, color: '000', fill: 'FFF',
+  shape_rendering: 'crispEdges', module_size: 6 }
+= RQRCode::QRCode.new(resource.qr_code, qr_options).as_svg(svg_options).html_safe

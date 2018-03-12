@@ -1,0 +1,39 @@
+.col-lg-5.my-auto.mx-auto
+  - if current_user.merchant?
+    .text-center
+      = render 'users/qr_code', resource: current_user
+      %h2= current_user.name
+  = form_for resource do |f|
+    .form-group
+      .d-flex.justify-content-between
+        = f.label 'Recipient'
+        %label.qr-code-button
+          .btn.btn-outline-light.btn-sm Scan QR Code
+          %input{type: 'file',
+            accept: 'image/*',
+            capture: 'environment',
+            tabindex: -1,
+            'data-js-qr-code-scanner': true,
+            'data-js-qr-code-map': wallets.map { |w| [w.user.qr_code, w.id] }.to_h.to_json }
+      = f.select :receiver_wallet_id,
+        wallets.map { |w| [w.user.name +  (w.user.regular? ? ": #{w.balance} #{w.currency.name_plural.titleize}" : ''), w.id] },
+        { include_blank: true },
+        class: 'form-control',
+        'data-js-select-input': true,
+        'data-js-qr-code-scanner-result': true
+    .form-group
+      = f.label :amount
+      = f.select :amount,
+        amounts.map { |am| [am.to_s, am] },
+        { include_blank: true },
+        class: 'form-control',
+        'data-js-select-input': true,
+        'data-js-select-input-createable': true
+    = f.submit 'Send', class: 'btn btn-primary col-lg-6'
+  - if current_user.merchant?
+    %br
+    %br
+    = link_to 'Transaction Histoy', order_transactions_path, class: 'text-white'
+
+= content_for :js do
+  = javascript_include_tag '//rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js'

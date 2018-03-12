@@ -1,0 +1,12 @@
+.col-lg-7.my-auto
+  .header-content.mx-auto
+    %h1.mb-7= t('app.title')
+.col-lg-5.my-auto
+  %h5.font-weight-bold Users
+  - resources.user_wallet.each do |resource|
+    = link_to resource.name, resource, class: 'btn btn-info my-1'
+  %br
+  %br
+  %h5.font-weight-bold Merchants
+  - resources.merchant_wallet.each do |resource|
+    = link_to resource.name, resource, class: 'btn btn-dark my-1'

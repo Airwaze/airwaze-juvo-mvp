@@ -1,0 +1,12 @@
+= content_for :header_hidden, true
+
+.my-auto.w-100.text-center
+  %h1= t('app.title')
+  = link_to 'Sign in with Google', user_google_oauth2_omniauth_authorize_path,
+    class: 'btn btn-outline-light btn-sm'
+  %br
+  = link_to 'Sign in as Merchant', sign_in_as_merchant_users_path,
+    method: :post, class: 'btn btn-primary btn-sm mt-2'
+  %br
+  = link_to 'Sign in as Juvo Air Time Bank', sign_in_as_bank_users_path,
+    method: :post, class: 'btn btn-success btn-sm mt-2'

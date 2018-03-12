@@ -1,0 +1,22 @@
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'selectize';
+@import 'selectize.bootstrap3';
+@import 'bootstrap/new_age';
+<<<<<<< HEAD
+=======
+
+.qr-code-button {
+  display: inline-block;
+  cursor: pointer;
+
+  input[type=file] {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+}
+>>>>>>> airwaze-mvp/master

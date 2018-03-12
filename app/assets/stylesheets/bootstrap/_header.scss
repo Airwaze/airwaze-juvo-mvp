@@ -1,0 +1,13 @@
+// Styling for the header
+header {
+  padding: 25px 0;
+  text-align: left;
+  color: fade-out(white, .7);
+  height: 8vh;
+
+  .avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+}
